@@ -5,7 +5,7 @@ class RecepieGenerator:
 
     def __init__(
         self, 
-        hidden_tuple_size=2,
+        hidden_tuple_size=2,# initial network
         intermediate_vertices=7,
         main_operations = ['linear', 'blend', 'elementwise_prod', 'elementwise_sum'],
         main_weights = [3., 1., 1., 1.],
@@ -89,7 +89,9 @@ class RecepieGenerator:
     def generate_random_recepie(self, seed=None):
         if seed is not None:
             np.random.seed(seed)
+        # list of prev hidden state
         prev_hidden_nodes = [f'h_prev_{i}' for i in range(self.hidden_tuple_size)]
+        # get the input involved
         base_nodes = ['x'] + prev_hidden_nodes
         
         recepie = {}

@@ -61,6 +61,7 @@ class Environment:
     def simulated_train(self, arch, max_epoch):
         arch_id = self._arch_to_id[json.dumps(arch)]
         if (arch_id not in self._training_states) or (max_epoch > self._training_states[arch_id]['cur_epoch']):
+            #print(arch_id) the arch id may be too large sometimes
             max_epoch = min([max_epoch, len(self._logs[arch_id]['train_losses']) - 1])
             self._training_states[arch_id] = self._make_state_dict(arch_id, max_epoch)
             
